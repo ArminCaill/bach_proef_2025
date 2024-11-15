@@ -15,37 +15,53 @@
 \section{Inleiding}%
 \label{sec:inleiding}
 
-Waarover zal je bachelorproef gaan? Introduceer het thema en zorg dat volgende zaken zeker duidelijk aanwezig zijn:
+Door de snelle groei van cloudplatformen hebben bedrijven toegang tot ongekende flexibiliteit en schaalbaarheid ten opzichte van het beheren van een eigen fysieke infrastructuur.
+Microsoft Azure is een van de meest gebruikte cloudplatformen ter wereld, dat bedrijven de mogelijkheid biedt om virtuele machines op te zetten en te beheren.
+Hoewel dit platform veel voordelen biedt, brengt het ook nieuwe uitdagingen met zich mee op het gebied van infrastructuurbeheer, beveiliging en monitoring.
+Voor bedrijven die dagelijks afhankelijk zijn van hun cloudinfrastructuur, kan inefficiënt beheer van deze virtuele machines leiden tot hogere operationele kosten, inconsistenties in configuratie, en kwetsbaarheden in de beveiliging.
+Een concreet probleem ontstaat bij organisaties met een snelgroeiende Azure-omgeving, zoals het stagebedrijf (Elindus NV) waar dit onderzoek wordt uitgevoerd.
+De virtuele machines worden handmatig beheerd, waardoor configuraties verschillen en belangrijke beveiligingsinstellingen vaak niet uniform worden toegepast.
+Ook ontbreekt er een gestructureerd monitoringsysteem dat real-time inzicht biedt in de prestaties en beveiligingsstatus van de omgeving.
+Hierdoor kunnen beveiligingsincidenten onopgemerkt blijven en kunnen de kosten oplopen door inefficiënt gebruik van resources.
+
+De probleemstelling richt zich op drie cruciale pijnpunten:
 
 \begin{itemize}
-  \item kaderen thema
-  \item de doelgroep
-  \item de probleemstelling en (centrale) onderzoeksvraag
-  \item de onderzoeksdoelstelling
+  \item Consistentie en automatisatie: Hoe kan de configuratie en beveiliging van virtuele machines worden gestandaardiseerd en geautomatiseerd om menselijke fouten te minimaliseren?
+  \item Monitoring en feedback: Hoe kan monitoring worden ingezet om proactief te reageren op prestatie- en beveiligingsproblemen?
+  \item Efficiëntie: Hoe kunnen deze verbeteringen zorgen voor een betere inzet van middelen en een vermindering in beheerskosten?
 \end{itemize}
 
-Denk er aan: een typische bachelorproef is \textit{toegepast onderzoek}, wat betekent dat je start vanuit een concrete probleemsituatie in bedrijfscontext, een \textbf{casus}. Het is belangrijk om je onderwerp goed af te bakenen: je gaat voor die \textit{ene specifieke probleemsituatie} op zoek naar een goede oplossing, op basis van de huidige kennis in het vakgebied.
-
-De doelgroep moet ook concreet en duidelijk zijn, dus geen algemene of vaag gedefinieerde groepen zoals \emph{bedrijven}, \emph{developers}, \emph{Vlamingen}, enz. Je richt je in elk geval op it-professionals, een bachelorproef is geen populariserende tekst. Eén specifiek bedrijf (die te maken hebben met een concrete probleemsituatie) is dus beter dan \emph{bedrijven} in het algemeen.
-
-Formuleer duidelijk de onderzoeksvraag! De begeleiders lezen nog steeds te veel voorstellen waarin we geen onderzoeksvraag terugvinden.
-
-Schrijf ook iets over de doelstelling. Wat zie je als het concrete eindresultaat van je onderzoek, naast de uitgeschreven scriptie? Is het een proof-of-concept, een rapport met aanbevelingen, \ldots Met welk eindresultaat kan je je bachelorproef als een succes beschouwen?
+Met dit onderzoek wordt aangetoond hoe Infrastructure as Code, met tools zoals Ansible, in combinatie met monitoringoplossingen, kan bijdragen aan een veilige, efficiënte en geautomatiseerde cloudomgeving.
+Het doel is om een schaalbare oplossing te ontwikkelen die zowel het beheer vereenvoudigt als de beveiliging en prestaties van Azure virtuele machines verbetert.
 
 %---------- Stand van zaken ---------------------------------------------------
 
 \section{Literatuurstudie}%
 \label{sec:literatuurstudie}
 
-Hier beschrijf je de \emph{state-of-the-art} rondom je gekozen onderzoeksdomein, d.w.z.\ een inleidende, doorlopende tekst over het onderzoeksdomein van je bachelorproef. Je steunt daarbij heel sterk op de professionele \emph{vakliteratuur}, en niet zozeer op populariserende teksten voor een breed publiek. Wat is de huidige stand van zaken in dit domein, en wat zijn nog eventuele open vragen (die misschien de aanleiding waren tot je onderzoeksvraag!)?
+\subsection{IaC en ansible}%
 
-Je mag de titel van deze sectie ook aanpassen (literatuurstudie, stand van zaken, enz.). Zijn er al gelijkaardige onderzoeken gevoerd? Wat concluderen ze? Wat is het verschil met jouw onderzoek?
+Voor veel bedrijven is het belangrijk om de concurrentie voor te blijven, waardoor deze genoodzaakt zijn om vlug op nieuwe trends in te gaan.
+Dit kan ervoor zorgen dat ze snel groeien en nood hebben aan een meer uitgebreide infrastructuur dan origineel voorzien was.
+Eerdere studies tonen aan dat \emph{Infrastructure as Code} een kritieke rol speelt in het automatiseren van configuratie en management van cloudomgevingen~\autocite{Kalliomaa2024}.
+Hoewel er meerdere tools bestaan voor \emph{config management} wordt er hier gekozen voor Ansible.
+Omdat Ansible agentless is, hoeft er geen extra software geïnstalleerd te worden, waardoor het compatibel is met een breed scala aan omgevingen~\autocite{Elradi2023}.
+Door het gebruik van Ansible playbooks kunnen deze bedrijven een infrastructuur opbouwen die schaalbaar is en makkelijk aanpasbaar aan de noden van het bedrijf.
 
-Verwijs bij elke introductie van een term of bewering over het domein naar de vakliteratuur, bijvoorbeeld~\autocite{Hykes2013}! Denk zeker goed na welke werken je refereert en waarom.
+\subsection{Security}%
 
-Draag zorg voor correcte literatuurverwijzingen! Een bronvermelding hoort thuis \emph{binnen} de zin waar je je op die bron baseert, dus niet er buiten! Maak meteen een verwijzing als je gebruik maakt van een bron. Doe dit dus \emph{niet} aan het einde van een lange paragraaf. Baseer nooit teveel aansluitende tekst op eenzelfde bron.
+Deze schaalbaarheid brengt op zich nieuwe problemen met zich mee qua beveiliging.
+Volgens~\textcite{Ots2021} onstaan de meest voorkomende securitybedreigingen door verkeerde configuratie van cloudservices, en niet door aanvallen van buitenaf.
+Het beveiligen van cloudomgevingen vereist een proactieve aanpak, waaronder het toepassen van beveiligingsrichtlijnen en het bewaken van compliance.
+Tools zoals Azure Security Center bieden geïntegreerde oplossingen voor het scannen en verhelpen van kwetsbaarheden.
+Voor groeiende bedrijven kan ook het onboarding- en offboarding proces moeilijkheden met zich meebrengen op gebied van toegangsrechten.
+Door IaC te gebruiken, kunnen beveiligingsinstellingen zoals netwerkbeperkingen, toegangspolicies en encryptie worden opgenomen in de configuratiescripts, wat zorgt voor consistente naleving van beveiligingsstandaarden.
 
-Als je informatie over bronnen verzamelt in JabRef, zorg er dan voor dat alle nodige info aanwezig is om de bron terug te vinden (zoals uitvoerig besproken in de lessen Research Methods).
+\subsection{Monitoring}%
+
+Dit alles moet kunnen opgevolgd worden aan de hand van monitoringtools. Een goede monitoringstructuur is essentieel om de prestaties en beveiliging van cloudsystemen te waarborgen.
+Tools zoals Azure Monitor en Log Analytics stellen beheerders in staat om real-time inzichten te verkrijgen in het gedrag van VM's, afwijkingen op te sporen en snel in te grijpen bij problemen~\autocite{Microsoft2024Monitor}.
 
 % Voor literatuurverwijzingen zijn er twee belangrijke commando's:
 % \autocite{KEY} => (Auteur, jaartal) Gebruik dit als de naam van de auteur
@@ -54,31 +70,64 @@ Als je informatie over bronnen verzamelt in JabRef, zorg er dan voor dat alle no
 %   functie heeft in de zin (bv. ``Uit onderzoek door Doll & Hill (1954) bleek
 %   ...'')
 
-Je mag deze sectie nog verder onderverdelen in subsecties als dit de structuur van de tekst kan verduidelijken.
-
 %---------- Methodologie ------------------------------------------------------
 \section{Methodologie}%
 \label{sec:methodologie}
 
-Hier beschrijf je hoe je van plan bent het onderzoek te voeren. Welke onderzoekstechniek ga je toepassen om elk van je onderzoeksvragen te beantwoorden? Gebruik je hiervoor literatuurstudie, interviews met belanghebbenden (bv.~voor requirements-analyse), experimenten, simulaties, vergelijkende studie, risico-analyse, PoC, \ldots?
+\subsection{Probleemanalyse}%
 
-Valt je onderwerp onder één van de typische soorten bachelorproeven die besproken zijn in de lessen Research Methods (bv.\ vergelijkende studie of risico-analyse)? Zorg er dan ook voor dat we duidelijk de verschillende stappen terug vinden die we verwachten in dit soort onderzoek!
+De eerste stap is het vaststellen van de exacte uitdagingen bij het beheer van een Azure infrastructuur en het in kaart brengen van relevante praktijken, technieken en tools.
+Dit omvat een grondige literatuurstudie van wetenschappelijke artikelen en technische documentatie over Azure, Ansible en monitoringoplossingen.
+Daarnaast worden interviews gehouden met de huidige systeembeheerders en IT-manager binnen het stagebedrijf om praktijkproblemen en vereisten te identificeren.
+Deze fase resulteert in een heldere probleemstelling en een verzameling best practices die als uitgangspunt dienen voor de rest van het onderzoek.
 
-Vermijd onderzoekstechnieken die geen objectieve, meetbare resultaten kunnen opleveren. Enquêtes, bijvoorbeeld, zijn voor een bachelorproef informatica meestal \textbf{niet geschikt}. De antwoorden zijn eerder meningen dan feiten en in de praktijk blijkt het ook bijzonder moeilijk om voldoende respondenten te vinden. Studenten die een enquête willen voeren, hebben meestal ook geen goede definitie van de populatie, waardoor ook niet kan aangetoond worden dat eventuele resultaten representatief zijn.
+\begin{itemize}
+  \item Tijdsindicatie: 3 weken
+\end{itemize}
 
-Uit dit onderdeel moet duidelijk naar voor komen dat je bachelorproef ook technisch voldoen\-de diepgang zal bevatten. Het zou niet kloppen als een bachelorproef informatica ook door bv.\ een student marketing zou kunnen uitgevoerd worden.
+\subsection{Analyse van infrastructuur}%
 
-Je beschrijft ook al welke tools (hardware, software, diensten, \ldots) je denkt hiervoor te gebruiken of te ontwikkelen.
+In deze fase wordt de bestaande infrastructuur van het stagebedrijf grondig onderzocht.
+Er wordt een gedetailleerd overzicht opgesteld van de huidige VM-configuraties, beveiligingsinstellingen en bestaande beheerprocessen.
+Eventuele tekortkomingen in consistentie, beveiliging en kostenbeheer worden geïdentificeerd aan de hand van de probleemanalyse.
 
-Probeer ook een tijdschatting te maken. Hoe lang zal je met elke fase van je onderzoek bezig zijn en wat zijn de concrete \emph{deliverables} in elke fase?
+\begin{itemize}
+  \item Tijdsindicatie: 2 weken
+\end{itemize}
+
+\subsection{Ontwerp en ontwikkeling}%
+
+Op basis van de inzichten uit de voorgaande fasen wordt een oplossing ontwikkeld. Deze bestaat uit Ansible playbooks die virtuele machines configureren, beveiligen en beheren volgens gestandaardiseerde processen.
+Daarnaast wordt een monitoringsysteem opgezet met Azure Monitor en Log Analytics om real-time inzicht te bieden in de prestaties en beveiliging.
+De ontwikkeling gebeurt iteratief, waarbij telkens kleine componenten worden getest en verfijnd.
+
+\begin{itemize}
+  \item Tijdsindicatie: 5 weken
+\end{itemize}
+
+\subsection{Implementatie en testfase}%
+
+De ontwikkelde oplossing wordt geïmplementeerd in een gecontroleerde testomgeving. Hier wordt de werking van de Ansible playbooks en monitoringconfiguraties uitgebreid getest.
+Er worden prestatie- en beveiligingsmetingen uitgevoerd om de verbeteringen ten opzichte van de oorspronkelijke situatie te bekijken.
+Eventuele aanpassingen kunnen nog doorgevoerd worden om de oplossing verder te optimaliseren.
+
+\begin{itemize}
+  \item Tijdsindicatie: 3 weken
+\end{itemize}
+
+\subsection{Evaluatie en documentatie}%
+
+In de laatste fase worden de behaalde resultaten geëvalueerd en gedocumenteerd. Het eindrapport bevat een uitgebreide beschrijving van het onderzoek, inclusief de probleemstelling, methodologie, resultaten en aanbevelingen.
+Daarnaast wordt een presentatie voorbereid voor de stakeholders van het stagebedrijf en de onderwijsinstelling, waarin de waarde en impact van de oplossing wordt toegelicht.
+
+\begin{itemize}
+  \item Tijdsindicatie: 2 weken
+\end{itemize}
 
 %---------- Verwachte resultaten ----------------------------------------------
-\section{Verwacht resultaat, conclusie}%
+\section{Verwacht resultaat}%
 \label{sec:verwachte_resultaten}
 
-Hier beschrijf je welke resultaten je verwacht. Als je metingen en simulaties uitvoert, kan je hier al mock-ups maken van de grafieken samen met de verwachte conclusies. Benoem zeker al je assen en de onderdelen van de grafiek die je gaat gebruiken. Dit zorgt ervoor dat je concreet weet welk soort data je moet verzamelen en hoe je die moet meten.
-
-Wat heeft de doelgroep van je onderzoek aan het resultaat? Op welke manier zorgt jouw bachelorproef voor een meerwaarde?
-
-Hier beschrijf je wat je verwacht uit je onderzoek, met de motivatie waarom. Het is \textbf{niet} erg indien uit je onderzoek andere resultaten en conclusies vloeien dan dat je hier beschrijft: het is dan juist interessant om te onderzoeken waarom jouw hypothesen niet overeenkomen met de resultaten.
-
+Dit onderzoek heeft als doel om een efficiënter, veiliger en consistenter beheer van cloudinfrastructuur te realiseren.
+Door gebruik te maken van Ansible voor de automatisatie van configuraties en beveiligingsinstellingen, in combinatie met monitoringtools zoals Azure Monitor, kan het handmatige werk van systeem- en netwerkbeheerders aanzienlijk worden verminderd.
+Tegelijkertijd biedt het onderzoek mogelijkheden om beveiligingsrisico's te minimaliseren en operationele kosten te verlagen door proactief beheer en real-time inzicht in de prestaties van de infrastructuur.
