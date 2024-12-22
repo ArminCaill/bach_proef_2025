@@ -17,51 +17,44 @@
 
 Door de snelle groei van cloudplatformen hebben bedrijven toegang tot ongekende flexibiliteit en schaalbaarheid ten opzichte van het beheren van een eigen fysieke infrastructuur.
 Microsoft Azure is een van de meest gebruikte cloudplatformen ter wereld, dat bedrijven de mogelijkheid biedt om virtuele machines op te zetten en te beheren.
-Hoewel dit platform veel voordelen biedt, brengt het ook nieuwe uitdagingen met zich mee op het gebied van infrastructuurbeheer, beveiliging en monitoring.
-Voor bedrijven die dagelijks afhankelijk zijn van hun cloudinfrastructuur, kan inefficiënt beheer van deze virtuele machines leiden tot hogere operationele kosten, inconsistenties in configuratie, en kwetsbaarheden in de beveiliging.
-Een concreet probleem ontstaat bij organisaties met een snelgroeiende Azure-omgeving, zoals het stagebedrijf (Elindus NV) waar dit onderzoek wordt uitgevoerd.
-De virtuele machines worden handmatig beheerd, waardoor configuraties verschillen en belangrijke beveiligingsinstellingen vaak niet uniform worden toegepast.
-Ook ontbreekt er een gestructureerd monitoringsysteem dat real-time inzicht biedt in de prestaties en beveiligingsstatus van de omgeving.
-Hierdoor kunnen beveiligingsincidenten onopgemerkt blijven en kunnen de kosten oplopen door inefficiënt gebruik van resources.
+Hoewel dit platform veel voordelen biedt, brengt het ook nieuwe uitdagingen met zich mee op het gebied van cybersecurity en de complexiteit van de infrastructuur.
+\textcolor{red}{Voor bedrijven die dagelijks afhankelijk zijn van hun cloudinfrastructuur kan inefficiënt beheer van deze virtuele machines leiden tot hogere operationele kosten, inconsistenties in configuratie en kwetsbaarheden in de beveiliging.}
+\textcolor{magenta}{Een concreet probleem ontstaat bij snelgroeiende organisaties met een steeds veranderende Azure-omgeving.}
+De virtuele machines worden handmatig beheerd, waardoor configuraties verschillen en belangrijke beveiligingsinstellingen niet uniform worden toegepast.
+Hierdoor kunnen er zich beveiligingsincidenten voordoen en kunnen de bedrijven slachtoffer worden van cyberaanvallen.
 
-De probleemstelling richt zich op drie cruciale pijnpunten:
+De probleemstelling richt zich op twee cruciale punten:
 
 \begin{itemize}
-  \item Consistentie en automatisatie: Hoe kan de configuratie en beveiliging van virtuele machines worden gestandaardiseerd en geautomatiseerd om menselijke fouten te minimaliseren?
-  \item Monitoring en feedback: Hoe kan monitoring worden ingezet om proactief te reageren op prestatie- en beveiligingsproblemen?
-  \item Efficiëntie: Hoe kunnen deze verbeteringen zorgen voor een betere inzet van middelen en een vermindering in beheerskosten?
+  \item\textcolor{green}{Automatisatie: Kunnen we met ansible playbooks het uitrollen van virtuele machines efficiënter maken op vlak van tijdsduur?}
+  \item\textcolor{green}{Consistentie: Kan het uitrollen van virtuele machines worden gestandaardiseerd om\linebreak menselijke fouten te minimaliseren op vlak van beveiliging?}
 \end{itemize}
 
-Met dit onderzoek wordt aangetoond hoe Infrastructure as Code, met tools zoals Ansible, in combinatie met monitoringoplossingen, kan bijdragen aan een veilige, efficiënte en geautomatiseerde cloudomgeving.
-Het doel is om een schaalbare oplossing te ontwikkelen die zowel het beheer vereenvoudigt als de beveiliging en prestaties van Azure virtuele machines verbetert.
+\textcolor{blue}{Met dit onderzoek wordt aangetoond hoe configuration management, met tools zoals Ansible, kan bijdragen aan een veilige en\linebreak geautomatiseerde cloudomgeving.}
+Het doel is om een schaalbare oplossing te ontwikkelen die zowel het beheer vereenvoudigt als de beveiliging van Azure virtuele machines verbetert.
 
 %---------- Stand van zaken ---------------------------------------------------
 
 \section{Literatuurstudie}%
 \label{sec:literatuurstudie}
 
-\subsection{IaC en ansible}%
+\subsection{Config Management}%
 
 Voor veel bedrijven is het belangrijk om de concurrentie voor te blijven, waardoor deze genoodzaakt zijn om vlug op nieuwe trends in te gaan.
 Dit kan ervoor zorgen dat ze snel groeien en nood hebben aan een meer uitgebreide infrastructuur dan origineel voorzien was.
-Eerdere studies tonen aan dat \emph{Infrastructure as Code} een kritieke rol speelt in het automatiseren van configuratie en management van cloudomgevingen~\autocite{Kalliomaa2024}.
+Eerdere studies tonen aan dat \emph{Infrastructure as Code} een kritieke rol speelt in het automatiseren van configuratie en management van cloudomgevingen\linebreak~\autocite{Kalliomaa2024}.
 Hoewel er meerdere tools bestaan voor \emph{config management} wordt er hier gekozen voor Ansible.
 Omdat Ansible agentless is, hoeft er geen extra software geïnstalleerd te worden, waardoor het compatibel is met een breed scala aan omgevingen~\autocite{Elradi2023}.
-Door het gebruik van Ansible playbooks kunnen deze bedrijven een infrastructuur opbouwen die schaalbaar is en makkelijk aanpasbaar aan de noden van het bedrijf.
+Door het gebruik van Ansible playbooks kunnen deze bedrijven een infrastructuur opbouwen die zowel veilig als schaalbaar is en makkelijk aanpasbaar aan de noden van het bedrijf.
 
 \subsection{Security}%
 
-Deze schaalbaarheid brengt op zich nieuwe problemen met zich mee qua beveiliging.
-Volgens~\textcite{Ots2021} onstaan de meest voorkomende securitybedreigingen door verkeerde configuratie van cloudservices, en niet door aanvallen van buitenaf.
+Deze schaalbaarheid brengt op zich nieuwe problemen met zich mee op het gebied van beveiliging.
+Volgens~\textcite{Ots2021} onstaan de meest voorkomende securitybedreigingen door\linebreak verkeerde configuratie van cloudservices, en niet door aanvallen van buitenaf.
 Het beveiligen van cloudomgevingen vereist een proactieve aanpak, waaronder het toepassen van beveiligingsrichtlijnen en het bewaken van compliance.
-Tools zoals Azure Security Center bieden geïntegreerde oplossingen voor het scannen en verhelpen van kwetsbaarheden.
-Voor groeiende bedrijven kan ook het onboarding- en offboarding proces moeilijkheden met zich meebrengen op gebied van toegangsrechten.
-Door IaC te gebruiken, kunnen beveiligingsinstellingen zoals netwerkbeperkingen, toegangspolicies en encryptie worden opgenomen in de configuratiescripts, wat zorgt voor consistente naleving van beveiligingsstandaarden.
-
-\subsection{Monitoring}%
-
-Dit alles moet kunnen opgevolgd worden aan de hand van monitoringtools. Een goede monitoringstructuur is essentieel om de prestaties en beveiliging van cloudsystemen te waarborgen.
-Tools zoals Azure Monitor en Log Analytics stellen beheerders in staat om real-time inzichten te verkrijgen in het gedrag van VM's, afwijkingen op te sporen en snel in te grijpen bij problemen~\autocite{Microsoft2024Monitor}.
+Voor groeiende bedrijven kan ook het onboarding en offboarding proces moeilijkheden met zich meebrengen op gebied van toegangsrechten.
+Door de implementatie van config management, kunnen beveiligingsinstellingen zoals netwerkbeperkingen, toegangspolicies en encryptie worden\linebreak opgenomen in Ansible playbooks.
+Dit zorgt voor een consistente naleving van de beveiligingsstandaarden.
 
 % Voor literatuurverwijzingen zijn er twee belangrijke commando's:
 % \autocite{KEY} => (Auteur, jaartal) Gebruik dit als de naam van de auteur
@@ -77,39 +70,40 @@ Tools zoals Azure Monitor en Log Analytics stellen beheerders in staat om real-t
 \subsection{Probleemanalyse}%
 
 De eerste stap is het vaststellen van de exacte uitdagingen bij het beheer van een Azure infrastructuur en het in kaart brengen van relevante praktijken, technieken en tools.
-Dit omvat een grondige literatuurstudie van wetenschappelijke artikelen en technische documentatie over Azure, Ansible en monitoringoplossingen.
-Daarnaast worden interviews gehouden met de huidige systeembeheerders en IT-manager binnen het stagebedrijf om praktijkproblemen en vereisten te identificeren.
-Deze fase resulteert in een heldere probleemstelling en een verzameling best practices die als uitgangspunt dienen voor de rest van het onderzoek.
+Dit omvat een grondige literatuurstudie van wetenschappelijke artikelen en technische documentatie over Azure, Ansible en cybersecurity principes.
+Het doel van dit literatuuronderzoek is om een diepgaand inzicht te verkrijgen in bestaande beveiligings- en beheerstrategieën voor Azure-omgevingen, evenals de rol die configuration management tools kunnen spelen.
+Deze fase resulteert in een heldere probleemstelling en een verzameling van best practices die als uitgangspunt dienen voor de rest van het onderzoek.
 
 \begin{itemize}
   \item Tijdsindicatie: 3 weken
 \end{itemize}
 
-\subsection{Analyse van infrastructuur}%
+\subsection{Traditionele opbouw}%
 
-In deze fase wordt de bestaande infrastructuur van het stagebedrijf grondig onderzocht.
-Er wordt een gedetailleerd overzicht opgesteld van de huidige VM-configuraties, beveiligingsinstellingen en bestaande beheerprocessen.
-Eventuele tekortkomingen in consistentie, beveiliging en kostenbeheer worden geïdentificeerd aan de hand van de probleemanalyse.
+In deze fase wordt een experimentele omgeving handmatig opgebouwd.
+Hier is het belangrijk de tijd te registreren zodat we deze later kunnen vergelijken met het opbouwen aan de hand van playbooks.
+Er wordt ook een gedetailleerd overzicht opgesteld van de huidige VM-\linebreak configuraties en beveiligingsinstellingen zodat we deze later kunnen vergelijken.
+Eventuele tekortkomingen op vlak van beveiliging worden geïdentificeerd aan de hand van de probleemanalyse.
 
 \begin{itemize}
-  \item Tijdsindicatie: 2 weken
+  \item Tijdsindicatie: 3 weken
 \end{itemize}
 
-\subsection{Ontwerp en ontwikkeling}%
+\subsection{Ontwerp van playbooks}%
 
-Op basis van de inzichten uit de voorgaande fasen wordt een oplossing ontwikkeld. Deze bestaat uit Ansible playbooks die virtuele machines configureren, beveiligen en beheren volgens gestandaardiseerde processen.
-Daarnaast wordt een monitoringsysteem opgezet met Azure Monitor en Log Analytics om real-time inzicht te bieden in de prestaties en beveiliging.
+Op basis van de inzichten uit de voorgaande fasen wordt een oplossing ontwikkeld.
+Deze bestaat uit Ansible playbooks die virtuele machines configureren en beveiligen volgens gestandaardiseerde processen.
 De ontwikkeling gebeurt iteratief, waarbij telkens kleine componenten worden getest en verfijnd.
 
 \begin{itemize}
   \item Tijdsindicatie: 5 weken
 \end{itemize}
 
-\subsection{Implementatie en testfase}%
+\subsection{Opbouw met Ansible}%
 
-De ontwikkelde oplossing wordt geïmplementeerd in een gecontroleerde testomgeving. Hier wordt de werking van de Ansible playbooks en monitoringconfiguraties uitgebreid getest.
-Er worden prestatie- en beveiligingsmetingen uitgevoerd om de verbeteringen ten opzichte van de oorspronkelijke situatie te bekijken.
-Eventuele aanpassingen kunnen nog doorgevoerd worden om de oplossing verder te optimaliseren.
+De ontwikkelde oplossing zal gebruikt worden om de experimentele omgeving opnieuw op te bouwen.
+In deze fase wordt de veiligheid van de virtuele machines opnieuw beoordeeld. 
+Er wordt ook opnieuw een gedetailleerd overzicht opgesteld om de verbeteringen ten opzichte van de oorspronkelijke situatie te bekijken.
 
 \begin{itemize}
   \item Tijdsindicatie: 3 weken
@@ -117,7 +111,10 @@ Eventuele aanpassingen kunnen nog doorgevoerd worden om de oplossing verder te o
 
 \subsection{Evaluatie en documentatie}%
 
-In de laatste fase worden de behaalde resultaten geëvalueerd en gedocumenteerd. Het eindrapport bevat een uitgebreide beschrijving van het onderzoek, inclusief de probleemstelling, methodologie, resultaten en aanbevelingen.
+In de laatste fase worden de behaalde resultaten geëvalueerd en gedocumenteerd.
+Er wordt een vergelijking gemaakt tussen de tijdsduur van het traditioneel handmatig opbouwen en het gebruik van playbooks.
+Ook worden de verschillen en verbeteringen in kaart gebracht op het gebied van beveiliging.
+Het eindrapport bevat een uitgebreide beschrijving van het onderzoek, inclusief de probleemstelling, methodologie, resultaten en aanbevelingen.
 Daarnaast wordt een presentatie voorbereid voor de stakeholders van het stagebedrijf en de onderwijsinstelling, waarin de waarde en impact van de oplossing wordt toegelicht.
 
 \begin{itemize}
@@ -129,5 +126,5 @@ Daarnaast wordt een presentatie voorbereid voor de stakeholders van het stagebed
 \label{sec:verwachte_resultaten}
 
 Dit onderzoek heeft als doel om een efficiënter, veiliger en consistenter beheer van cloudinfrastructuur te realiseren.
-Door gebruik te maken van Ansible voor de automatisatie van configuraties en beveiligingsinstellingen, in combinatie met monitoringtools zoals Azure Monitor, kan het handmatige werk van systeem- en netwerkbeheerders aanzienlijk worden verminderd.
-Tegelijkertijd biedt het onderzoek mogelijkheden om beveiligingsrisico's te minimaliseren en operationele kosten te verlagen door proactief beheer en real-time inzicht in de prestaties van de infrastructuur.
+Door gebruik te maken van Ansible voor de automatisatie van configuraties en beveiligingsinstellingen kan het handmatige werk van systeem- en netwerkbeheerders aanzienlijk worden verminderd.
+Op basis van de evaluatie wordt een conclusie getrokken over de meerwaarde van Ansible voor het beheren en beveiligen van Azure virtuele machines.
