@@ -1,0 +1,8 @@
+# ansible/roles/resource_group/tasks/main.yml
+---
+- name: Create a resource group
+  azure_rm_resourcegroup:
+    name: {{ resource_group }}
+    location: westeurope
+    subscription_id: {{ subscription_id }}
+    tenant: {{ tenant_id }}

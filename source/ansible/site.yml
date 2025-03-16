@@ -1,0 +1,33 @@
+# ansible/site.yml
+---
+- name: Configure resource group
+  roles:
+    - resource_group
+
+- name: Configure virtual network
+  roles:
+    - virtual_network
+
+- name: Configure subnet
+  roles:
+    - subnet
+
+- name: Configure virtual machine
+  roles:
+    - virtual_machine
+
+- name: Configure bastion
+  roles:
+    - bastion
+
+- name: Configure network security group
+  roles:
+    - network_security_group
+
+# - name: Configure monitoringserver
+#   hosts: monitoring
+#   become: true
+#   roles:
+#     - prometheus
+#     - grafana
+#     - node_exporter

@@ -1,0 +1,12 @@
+# ansible/roles/virtual_network/tasks/main.yml
+---
+- name: Create a virtual network
+  azure_rm_virtualnetwork:
+    resource_group: {{ resource_group }}
+    name: {{ virtual_network }}
+    address_prefixes_cidr:
+      - 10.10.0.0/16
+    purge_dns_servers: true
+    state: "present"
+    subscription_id: {{ subscription_id }}
+    tenant: {{ tenant_id }}

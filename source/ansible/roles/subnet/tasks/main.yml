@@ -1,0 +1,10 @@
+# ansible/roles/subnet/tasks/main.yml
+---
+- name: Create a subnet
+  azure_rm_subnet:
+    resource_group: {{ resource_group }}
+    virtual_network_name: {{ virtual_network }}
+    name: sn_armin_1
+    address_prefix_cidr: "10.10.1.0/24"
+    subscription_id: {{ subscription_id }}
+    tenant: {{ tenant_id }}

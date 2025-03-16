@@ -5,32 +5,62 @@
 \chapter{\IfLanguageName{dutch}{Inleiding}{Introduction}}%
 \label{ch:inleiding}
 
-De inleiding moet de lezer net genoeg informatie verschaffen om het onderwerp te begrijpen en in te zien waarom de onderzoeksvraag de moeite waard is om te onderzoeken. In de inleiding ga je literatuurverwijzingen beperken, zodat de tekst vlot leesbaar blijft. Je kan de inleiding verder onderverdelen in secties als dit de tekst verduidelijkt. Zaken die aan bod kunnen komen in de inleiding~\autocite{Pollefliet2011}:
+\section{\IfLanguageName{dutch}{Context en achtergrond}{Context and background}}%
+\label{sec:context}
 
-\begin{itemize}
-  \item context, achtergrond
-  \item afbakenen van het onderwerp
-  \item verantwoording van het onderwerp, methodologie
-  \item probleemstelling
-  \item onderzoeksdoelstelling
-  \item onderzoeksvraag
-  \item \ldots
-\end{itemize}
+De opkomst van cloudcomputing heeft bedrijven de mogelijkheid geboden om hun IT-infrastructuur flexibel en schaalbaar op te richten.
+Microsoft Azure is een van de meest gebruikte cloudplatformen en biedt organisaties de mogelijkheid om virtuele machines op te zetten en te beheren.
+Ondanks de voordelen van cloudomgevingen, zoals kostenbesparing en schaalbaarheid, brengt het beheren en beveiligen van Azure VM's enkele uitdagingen met zich mee.
+Handmatige configuratie en menselijke fouten leiden vaak tot inconsistenties en beveiligingsrisico's, wat kan resulteren in datalekken of potentiële cyberaanvallen.
 
-\section{\IfLanguageName{dutch}{Probleemstelling}{Problem Statement}}%
-\label{sec:probleemstelling}
+Een mogelijke oplossing voor deze problematiek is configuration management, een methode om infrastructuren op een gestructureerde en geautomatiseerde manier te beheren.
+Ansible, een populaire open-source tool, stelt systeem- en netwerkbeheerders in staat om infrastructuur als code te beheren en configuraties uniform uit te rollen.
+Dit onderzoek richt zich op de impact van Ansible op het verbeteren van de beveiliging en efficiëntie van Azure VM's.
 
-Uit je probleemstelling moet duidelijk zijn dat je onderzoek een meerwaarde heeft voor een concrete doelgroep. De doelgroep moet goed gedefinieerd en afgelijnd zijn. Doelgroepen als ``bedrijven,'' ``KMO's'', systeembeheerders, enz.~zijn nog te vaag. Als je een lijstje kan maken van de personen/organisaties die een meerwaarde zullen vinden in deze bachelorproef (dit is eigenlijk je steekproefkader), dan is dat een indicatie dat de doelgroep goed gedefinieerd is. Dit kan een enkel bedrijf zijn of zelfs één persoon (je co-promotor/opdrachtgever).
+\section{\IfLanguageName{dutch}{Afbakening van het onderwerp}{Definition of the subject}}%
+\label{sec:afbakening}
 
-\section{\IfLanguageName{dutch}{Onderzoeksvraag}{Research question}}%
-\label{sec:onderzoeksvraag}
+Dit onderzoek spitst zich toe op het gebruik van Ansible voor het automatiseren van de configuratie en beveiliging van Azure VM's.
+Andere cloudplatformen zoals AWS of Google Cloud worden niet meegenomen in deze studie.
+Daarnaast ligt de focus op cybersecurity-gerelateerde configuraties, zoals netwerkbeperkingen, toegangsbeheer en compliance met best practices.
+Algemene prestatieoptimalisatie en kostenbesparing vallen buiten de scope van dit onderzoek.
 
-Wees zo concreet mogelijk bij het formuleren van je onderzoeksvraag. Een onderzoeksvraag is trouwens iets waar nog niemand op dit moment een antwoord heeft (voor zover je kan nagaan). Het opzoeken van bestaande informatie (bv. ``welke tools bestaan er voor deze toepassing?'') is dus geen onderzoeksvraag. Je kan de onderzoeksvraag verder specifiëren in deelvragen. Bv.~als je onderzoek gaat over performantiemetingen, dan 
+\section{\IfLanguageName{dutch}{Probleemstelling en onderzoeksvraag}{Problem Statement}}%
+\label{sec:probleemstelling en onderzoeksvraag}
+
+Veel bedrijven beheren hun cloudinfrastructuur handmatig, wat kan leiden tot inconsistente configuraties en beveiligingsrisico's.
+De kern van dit probleem is dat VM-configuraties niet gestandaardiseerd worden toegepast, waardoor kwetsbaarheden ontstaan.
+Dit onderzoek richt zich daarom op de volgende onderzoeksvraag:
+
+"Hoe kan Ansible bijdragen aan de automatisering en beveiliging van Azure virtuele machines?"
+
+Om deze vraag te beantwoorden, worden de volgende deelvragen onderzocht:
+
+Wat zijn de huidige uitdagingen bij het handmatig beheren van Azure VM's?
+Hoe kan Ansible worden ingezet om beveiligingsinstellingen en configuraties te standaardiseren?
+Welke voordelen en beperkingen brengt Ansible met zich mee voor cybersecurity in Azure?
+De doelgroep van dit onderzoek bestaat uit systeem- en netwerkbeheerders, DevOps-teams en IT-securityspecialisten die verantwoordelijk zijn voor het beheren van Azure VM's.
+Ook IT-managers en organisaties die streven naar een veiligere en efficiëntere cloudinfrastructuur kunnen baat hebben bij de resultaten van deze studie.
 
 \section{\IfLanguageName{dutch}{Onderzoeksdoelstelling}{Research objective}}%
 \label{sec:onderzoeksdoelstelling}
 
-Wat is het beoogde resultaat van je bachelorproef? Wat zijn de criteria voor succes? Beschrijf die zo concreet mogelijk. Gaat het bv.\ om een proof-of-concept, een prototype, een verslag met aanbevelingen, een vergelijkende studie, enz.
+Het doel van dit onderzoek is om te analyseren hoe configuration management met Ansible kan bijdragen aan het efficiënter en veiliger beheren van Azure VM's.
+Dit wordt gerealiseerd door het ontwikkelen van een reeks Ansible playbooks die beveiligings- en configuratieprocessen automatiseren.
+Vervolgens wordt de effectiviteit van deze playbooks geëvalueerd door een vergelijkende studie tussen handmatige en geautomatiseerde configuratie.
+
+De methodologie omvat de volgende stappen:
+
+\begin{itemize}
+  \item Literatuuronderzoek naar bestaande best practices op het gebied van configuration management en cybersecurity in Azure.
+  \item Probleemanalyse van de huidige werkwijzen bij het opzetten en beveiligen van Azure VM's.
+  \item Ontwikkeling van Ansible playbooks voor het automatiseren van beveiligingsinstellingen.
+  \item Vergelijkende analyse van de traditionele, handmatige methode en de geautomatiseerde aanpak met Ansible.
+  \item Evaluatie van de impact op efficiëntie, consistentie en beveiliging.
+\end{itemize}
+
+Het beoogde resultaat van dit onderzoek is een concrete, herbruikbare oplossing voor het beveiligen en configureren van Azure VM's met Ansible.
+De conclusies en aanbevelingen kunnen organisaties helpen om hun cloudinfrastructuur veiliger en beter beheersbaar te maken.
 
 \section{\IfLanguageName{dutch}{Opzet van deze bachelorproef}{Structure of this bachelor thesis}}%
 \label{sec:opzet-bachelorproef}
@@ -47,4 +77,5 @@ In Hoofdstuk~\ref{ch:methodologie} wordt de methodologie toegelicht en worden de
 
 % TODO: Vul hier aan voor je eigen hoofstukken, één of twee zinnen per hoofdstuk
 
-In Hoofdstuk~\ref{ch:conclusie}, tenslotte, wordt de conclusie gegeven en een antwoord geformuleerd op de onderzoeksvragen. Daarbij wordt ook een aanzet gegeven voor toekomstig onderzoek binnen dit domein.
+In Hoofdstuk~\ref{ch:conclusie}, tenslotte, wordt de conclusie gegeven en een antwoord geformuleerd op de onderzoeksvragen.
+Daarbij wordt ook een aanzet gegeven voor toekomstig onderzoek binnen dit domein.

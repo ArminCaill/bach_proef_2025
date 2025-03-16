@@ -1,0 +1,45 @@
+# ansible/roles/node_exporter/tasks/main.yml
+---
+- name: install tar
+  yum:
+    name:
+      - tar
+
+- name: create Node Exporter system user
+  user:
+    name: node_exporter
+    system: true
+    shell: "/usr/sbin/nologin"
+    createhome: false
+
+- name: download Node Exporter
+  get_url:
+    url: https://github.com/prometheus/node_exporter/releases/download/v1.6.1/node_exporter-1.6.1.linux-amd64.tar.gz
+    dest: /tmp/node_exporter.tar.gz
+
+- name: extract Node Exporter
+  unarchive:
+    src: /tmp/node_exporter.tar.gz
+    dest: /usr/local/
+    remote_src: true
+
+- name: move Node Exporter binary
+  shell: mv /usr/local/node_exporter-1.6.1.linux-amd64/node_exporter /usr/local/bin/
+
+- name: create Node Exporter service
+  copy:
+    src: files/node_exporter.service
+    dest: /etc/systemd/system/node_exporter.service
+    owner: root
+    group: root
+    mode: 0644
+
+- name: reload systemd
+  systemd:
+    daemon_reload: true
+
+- name: enable and start Node Exporter
+  systemd:
+    name: node_exporter
+    enabled: true
+    state: started

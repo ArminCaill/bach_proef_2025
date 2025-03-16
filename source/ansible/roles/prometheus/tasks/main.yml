@@ -1,0 +1,78 @@
+# ansible/roles/prometheus/tasks/main.yml
+---
+- name: Install tar
+  yum:
+    name:
+      - tar
+
+- name: create prometheus system group
+  group:
+    name: prometheus
+    system: true
+    state: present
+
+- name: create prometheus system user
+  user:
+    name: prometheus
+    system: true
+    shell: "/usr/sbin/nologin"
+    group: prometheus
+    createhome: false
+
+- name: create prometheus data directory
+  file:
+    path: /var/lib/prometheus
+    state: directory
+    owner: prometheus
+    group: prometheus
+    mode: 0755
+
+- name: create prometheus configuration directory
+  file:
+    path: /etc/prometheus
+    state: directory
+    owner: root
+    group: prometheus
+    mode: 0770
+
+- name: download Prometheus binary to local folder
+  get_url:
+    url: https://github.com/prometheus/prometheus/releases/download/v2.46.0/prometheus-2.46.0.linux-amd64.tar.gz
+    dest: /tmp/prometheus.tar.gz
+
+- name: extract Prometheus
+  unarchive:
+    src: /tmp/prometheus.tar.gz
+    dest: /usr/local/
+    remote_src: true
+
+- name: move Prometheus binaries
+  shell: mv /usr/local/prometheus-2.46.0.linux-amd64/prometheus /usr/local/bin/
+#  args:
+#    warn: false
+
+- name: upload Prometheus configuration
+  template:
+    src: prometheus.yml
+    dest: /etc/prometheus/prometheus.yml
+    owner: root
+    group: prometheus
+    mode: 0640
+
+- name: create Prometheus service
+  copy:
+    src: files/prometheus.service
+    dest: /etc/systemd/system/prometheus.service
+    owner: root
+    group: root
+    mode: 0644
+
+- name: reload systemd
+  systemd:
+    daemon_reload: true
+
+- name: enable and start Prometheus
+  systemd:
+    name: prometheus
+    enabled: true
+    state: started

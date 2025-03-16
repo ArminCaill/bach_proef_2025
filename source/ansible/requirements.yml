@@ -1,0 +1,7 @@
+# ansible/requirements.yml
+---
+collections:
+  - azure.azcollection
+
+# roles:
+#   - name: bertvv.rh-base

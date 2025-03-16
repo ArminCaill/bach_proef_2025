@@ -1,0 +1,8 @@
+# ansible/group_vars/all.yml
+---
+resource_group: rg_armin
+subscription_id: c0a99cfd-5022-49fe-a514-945ea07533bc
+tenant_id: e364da6d-7d6f-4592-a673-b9d8739a33b1
+virtual_network: vn_armin
+username: armin
+password: letmein

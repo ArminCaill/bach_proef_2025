@@ -1,0 +1,13 @@
+# ansible/roles/virtual_machine/tasks/main.yml
+---
+- name: Create VM with defaults
+  azure_rm_virtualmachine:
+    resource_group: {{ resource_group }}
+    name: vm_armin_web
+    admin_username: {{ username }}
+    admin_password: {{ password }}
+    image:
+      offer: CentOS
+      publisher: OpenLogic
+      sku: '7.7'
+      version: latest

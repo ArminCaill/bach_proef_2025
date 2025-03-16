@@ -1,0 +1,27 @@
+# ansible/roles/grafana/tasks/main.yml
+
+- name: Install dependencies
+  package:
+    name: chkconfig
+    state: present
+
+- name: Add Grafana repository
+  copy:
+    src: files/grafana.repo
+    dest: /etc/yum.repos.d/grafana.repo
+
+- name: Install Grafana
+  yum:
+    name: grafana
+    state: present
+
+- name: Upload Grafana configuration
+  template:
+    src: grafana.ini
+    dest: /etc/grafana/grafana.ini
+
+- name: Start and enable Grafana
+  systemd:
+    name: grafana-server
+    state: started
+    enabled: yes
